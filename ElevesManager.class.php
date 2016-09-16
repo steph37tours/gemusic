@@ -102,13 +102,12 @@ class ElevesManager
     
     public function setCours(Eleve $eleve, $liste_bool_cours)
     {
-        $q = $this->_db->prepare('INSERT INTO COURSANNEE SET liste_bool_cours = :liste_bool_cours, annee_en_cours = :annee_en_cours, date_inscription = :date_inscription, id_eleve = :id_eleve');
+        $q = $this->_db->prepare('INSERT INTO COURSANNEE SET liste_bool_cours = :liste_bool_cours,  id_eleve = :id_eleve');
         
-        $q->bindValue(':annee_en_cours', $annee_en_cours, PDO::PARAM_STR);
         $q->bindValue(':liste_bool_cours', $liste_bool_cours, PDO::PARAM_STR);
-        $q->bindValue(':date_inscription', $date_inscription, PDO::PARAM_INT);
+        //$q->bindValue(':date_inscription', $date_inscription, PDO::PARAM_INT);date_inscription = :date_inscription,
         $q->bindValue(':id_eleve', $eleve->id(), PDO::PARAM_INT);
-        //$q->bindValue(':annee_en_cours', $annee_en_cours, PDO::PARAM_INT);
+        //$q->bindValue(':annee_en_cours', $annee_en_cours, PDO::PARAM_INT);annee_en_cours = :annee_en_cours,
         
         $q->execute();
     } 
